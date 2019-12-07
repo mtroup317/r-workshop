@@ -67,10 +67,10 @@ kelp_path <- here("R-workshop-data", "kelp_counts_curated.xlsx")
 
 
 #command + shift + M for new pipe operator
-kelp_all_sites <- kelp_path %>%
-  excel_sheets() %>%
-  set_names() %>% 
-  map_df(read_excel, kelp_path)
+# kelp_all_sites <- kelp_path %>%
+#   excel_sheets() %>%
+#   set_names() %>%
+#   map_df(read_excel, kelp_path)
 
 
 ```
@@ -85,7 +85,7 @@ We're going to write our "kelp_golb" object to a CSV file
 write_csv(kelp_golb, "kelp_goleta_july.csv")
 ###write_csv(kelp_golb, here())
 
-write_xlsx(kelp_golb, "kelp_goleta_july.csv")
+write_xlsx(kelp_golb, "kelp_goleta_july.xls")
 ```
 
 
