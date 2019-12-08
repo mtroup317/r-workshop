@@ -79,3 +79,48 @@ ggsave(here("figures/lobsters-line.png"))
 ## Activity
 1. Calculate the meadian size_mm (?median)
 2. Create and ggsave() a plot
+
+# dplyr::count() for counting by group
+This is a "shortcut function
+
+```{r}
+lobsters%>%
+  count(site, year)
+
+## This is the same  as
+
+lobsters %>%
+  group_by(site, year) %>%
+  summarize(n = n()) %>%
+  ungroup ()
+
+```
+
+# mutate() add a new column
+it will make a new variable
+
+- Add a new column that is the size in meters
+- Add a new column that is a repeated value
+```{r}
+head(lobsters)
+
+lobsters %>%
+  mutate(size_m = size_mm / 1000, 
+         millenia = 2000, 
+         observer = "Allison Horst")
+
+```
+
+## Use select() function to subset variables by columns
+lets select 
+- date
+- site
+- size_m
+
+```{r}
+lobsters_selected <- lobsters %>%
+  mutate(size_m = size_mm / 1000) %>%
+  select(date, site, size_m)
+```
+
+
