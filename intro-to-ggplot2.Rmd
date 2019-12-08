@@ -1,0 +1,88 @@
+---
+title: "intro-to-ggplot2"
+author: "Molly Troup"
+date: December 8, 2019
+output: html_document
+---
+## Attach packages
+
+
+```{r}
+library (tidyverse)
+library(readxl)
+library(here)
+
+```
+
+### Read in the data
+
+```{r}
+ca_np <- read_csv(here("R-workshop-data", "ca_np.csv"))
+ci_np <- read_xlsx(here("R-workshop-data", "ci_np.xlsx"))
+
+```
+## Make a graph
+1. Tell R we're using "`gglot`"
+2. Tell R what data we're using and what variables we want to plot
+3. What type of graph we're creating (geom)
+
+```{r, eval = FALSE}
+ggplot(data = This. aes(x = THIS, y=THIS)) +
+  geom_THIS()
+
+#Now let's create a graph of CI visitation:
+
+
+```
+
+```{r}
+ggplot(data = ci_np, aes(x= year, y = visitors)) +
+  geom_line()
+```
+
+1. Create a column graph with this data
+2. Create an area graph with this data
+
+
+```{r}
+ggplot(data = ci_np, aes(x= year, y = visitors)) +
+  geom_col()
+```
+
+```{r}
+ggplot(data = ci_np, aes(x= year, y = visitors)) +
+  geom_area()
+```
+
+
+## Intro to customizing `ggplot` graphs
+
+- color = (to update point or line colors)
+- fill = (update the fill characteristic of an element)
+- linetype =
+- pch = (value)
+- size = 
+- alpha = 
+
+```{r}
+ggplot(data=ci_np, aes(x= year, y = visitors)) +
+  geom_line(color="coral4", linetype="solid")
+```
+
+```{r}
+ggplot(data=ci_np, aes(x= year, y = visitors)) +
+  geom_point(color = "blue",
+             pch = 17,
+             sixe = 4, 
+             alpha = 0.5)
+```
+
+```{r, echo = FALSE}
+ggplot(data=ci_np, aes(x= year, y = visitors)) +
+  geom_area(color = "yellow",
+             pch = 10,
+             sixe = 10, 
+             alpha = 0.8)
+```
+
+I have some awesome text here, and below is my amazing finalized graph: 
