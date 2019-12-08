@@ -86,3 +86,89 @@ ggplot(data=ci_np, aes(x= year, y = visitors)) +
 ```
 
 I have some awesome text here, and below is my amazing finalized graph: 
+
+## Customize elements based on variables or outcomes
+
+```{r}
+
+ggplot(data = ci_np, aes(x= year, y= visitors)) +
+  geom_point(aes(size = visitors,
+                 color = visitors), 
+             pch = 17, 
+             alpha = 0.5)
+
+
+```
+
+Activity: create a column plot of CINP visitation over time, where the FILL COLOR changes based on the number of visitors, and the outline color (color =) is "magenta"
+
+```{r}
+ggplot(data = ci_np, aes(x= year, y = visitors)) +
+  geom_col(aes(fill= visitors), 
+           color = magenta)
+```
+
+```{r}
+
+```
+## Add/update labels and titles
+
+Using `labs`
+```{r}
+ggplot(data = ci_np, aes(x= year, y=visitors))+
+  geom_point((size= 1,
+              color= "navy") +
+               theme_minimal()+
+               labs(x="My x-axis title", 
+                    y= "Annual Visitors",
+                    Title = "Channel Islands NP Visitation",
+                    submititle = "1963-2016"
+                  
+```
+
+
+### Combine compatible geoms
+
+```{r}
+ggplot(data = ci_np, aes(x=year, y=visitors))+
+  geom_line (color = "purple" +
+  geom_point(color = "magenta", 
+              aes(size= year))
+```
+
+
+Create a combined column graph + line graph of visitation
+
+```{r}
+ggplot(data= ci_np, aes(x = year, y=visitors)) +
+  
+```
+
+
+## Create a line graph with mulitple series
+
+```{r}
+ggplot(data = ca_np, aes(x = year, y = visitors, color = park_name)) +
+  geom_line()
+```
+
+### Faciting ggplot graphs
+- each series gets it's own plot panal
+
+```{r}
+ggplot(data = ca_np, aes(x = year, y = visitors, color = park_name)) +
+  geom_line(show.legend = FALSE) + 
+  theme_minimal() +
+  facet_wrap(~ park_name)
+```
+
+
+
+
+### Use ggsave to export a plot
+
+```{r}
+ggsave("np_graph.png", dpi = 180, width = 8, height = 7)
+```
+
+
