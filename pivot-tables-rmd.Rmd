@@ -1,0 +1,81 @@
+---
+title: "Pivot Tables"
+output: html_document
+---
+## Attach libraries
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(here)
+library(skimr) #install.packages("skimr")
+```
+
+## Read in our data about lobsters
+
+```{r}
+lobsters <- read_xlsx(here("R-workshop-data/lobsters.xlsx"))
+
+#head() function show the first 6 lines of data
+## skimr:: skim() gives additional summary statistics and is pipable (%>%)
+
+skim(lobsters)
+```
+
+##ggplot of lobsters
+```{r}
+ggplot(data = lobsters, aes(x=year)) +
+geom_bar() +
+facet_wrap(~site)
+```
+
+
+
+##our task:
+how has the ave size of lobsters has changed overtime accross sites?
+
+Pivot tables in R are group_by %>% summarize
+
+
+```{r}
+lobsters%>%
+  group_by(year)%>%
+  summarise(count_by_year = n())
+```
+
+What if we didnt' group_by first?
+
+```{r}
+lobsters %>%
+  summarize(count_by_something = n())
+```
+## assign our summary to a new variable
+
+lobsters_sum <- lobsters%>%
+  summarize(count_by_comething = n())
+  
+## group by muliple variables and summarize by multiple variables
+We used mean() to calculate the mean size of lobsters by each site and year, and used na.rm = TRUE to calculate mean despite having missing values in our raw data
+
+
+```{r}
+siteyear_summary <- lobsters %>%
+  group_by(site, year) %>%
+  summarise(count_by_siteyear = n(),
+            mean_size_mm = mean(size_mm, na.rm = TRUE),
+            sd_size_mm = sd(size_mm, na.rm = TRUE),
+            median_size_mm = median(size_mm, na.rm = TRUE))
+siteyear_summary
+
+##ggplot: geom_line
+
+ggplot(data = siteyear_summary, aes(x = year, y = median_size_mm, color = site)) +
+  geom_line()
+
+## I created a figures folder from the Rstudio Files pane in order to be organized and for this code to run:
+ggsave(here("figures/lobsters-line.png"))
+```
+
+## Activity
+1. Calculate the meadian size_mm (?median)
+2. Create and ggsave() a plot
