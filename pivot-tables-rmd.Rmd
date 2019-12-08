@@ -14,7 +14,7 @@ library(skimr) #install.packages("skimr")
 ## Read in our data about lobsters
 
 ```{r}
-lobsters <- read_xlsx(here("R-workshop-data/lobsters.xlsx"))
+lobsters <- read_xlsx(here("R-workshop-data/lobsters2.xlsx"))
 
 #head() function show the first 6 lines of data
 ## skimr:: skim() gives additional summary statistics and is pipable (%>%)
