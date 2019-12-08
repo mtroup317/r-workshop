@@ -78,7 +78,7 @@ ggplot(data=ci_np, aes(x= year, y = visitors)) +
 ```
 
 ```{r, echo = FALSE}
-ggplot(data=ci_np, aes(x= year, y = visitors)) +
+ggplot(data=ci_np, aes( x = year, y = visitors)) +
   geom_area(color = "yellow",
              pch = 10,
              sixe = 10, 
@@ -103,26 +103,29 @@ ggplot(data = ci_np, aes(x= year, y= visitors)) +
 Activity: create a column plot of CINP visitation over time, where the FILL COLOR changes based on the number of visitors, and the outline color (color =) is "magenta"
 
 ```{r}
-ggplot(data = ci_np, aes(x= year, y = visitors)) +
-  geom_col(aes(fill= visitors), 
-           color = magenta)
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_col(aes(fill = visitors), 
+           color = "magenta")
 ```
 
 ```{r}
-
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_line(size = 3,
+            color = "red") +
+  theme_light()
 ```
 ## Add/update labels and titles
 
 Using `labs`
 ```{r}
-ggplot(data = ci_np, aes(x= year, y=visitors))+
-  geom_point((size= 1,
+ggplot(data = ci_np, aes(x = year, y = visitors)) +
+  geom_point(size = 1,
               color= "navy") +
-               theme_minimal()+
-               labs(x="My x-axis title", 
+  theme_minimal()+
+  labs(x="My x-axis title", 
                     y= "Annual Visitors",
                     Title = "Channel Islands NP Visitation",
-                    submititle = "1963-2016"
+                    submititle = "1963-2016")
                   
 ```
 
@@ -131,7 +134,7 @@ ggplot(data = ci_np, aes(x= year, y=visitors))+
 
 ```{r}
 ggplot(data = ci_np, aes(x=year, y=visitors))+
-  geom_line (color = "purple" +
+  geom_line(color = "purple") +
   geom_point(color = "magenta", 
               aes(size= year))
 ```
@@ -140,7 +143,7 @@ ggplot(data = ci_np, aes(x=year, y=visitors))+
 Create a combined column graph + line graph of visitation
 
 ```{r}
-ggplot(data= ci_np, aes(x = year, y=visitors)) +
+#ggplot(data= ci_np, aes(x = year, y=visitors)) +
   
 ```
 
@@ -171,4 +174,4 @@ ggplot(data = ca_np, aes(x = year, y = visitors, color = park_name)) +
 ggsave("np_graph.png", dpi = 180, width = 8, height = 7)
 ```
 
-
+## Sink back to GitHub remote
